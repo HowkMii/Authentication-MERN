@@ -11,6 +11,14 @@ require('dotenv').config({
 const app = express()
 
 //config Dv
+if(process.env.NODE_ENV==='development'){
+    app.use(cors({
+        origin:process.env.CLIENT_URL
+    }))
+    app.use(morgan('dev'))
+    //morgan give information about each request
+    //Cors its allow to deal with react
+}
 const PORT = process.env.PORT 
 app.listen(PORT,()=>{
     console.log('app listening on port 5000');
